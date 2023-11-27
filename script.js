@@ -11,8 +11,8 @@ function adicionar() {
   const newTask = document.createElement("li");
   newTask.innerHTML = `
       <span>${taskDescription}</span>
-      <button onclick="toggleTaskStatus(this)">Concluir</button>
-      <button onclick="removeTask(this)">Excluir</button>
+      <input type="checkbox" onchange="adicionaChequed(this)">
+      <button onclick="remover(this)">Excluir</button>
     `;
 
   taskList.appendChild(newTask);
@@ -20,13 +20,13 @@ function adicionar() {
   taskInput.value = "";
 }
 
-function toggleTaskStatus(button) {
-  const taskItem = button.parentNode;
-  taskItem.classList.toggle("completed");
+function adicionaChequed(checkbox) {
+  const verifica = checkbox.parentNode.querySelector("span");
+  verifica.classList.toggle("completed", checkbox.checked);
 }
 
-function removeTask(button) {
-  const taskItem = button.parentNode;
+function remover(button) {
+  const excluir = button.parentNode;
   const taskList = document.getElementById("taskList");
-  taskList.removeChild(taskItem);
+  taskList.removeChild(excluir);
 }
